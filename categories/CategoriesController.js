@@ -1,13 +1,8 @@
 const express = require("express")
 const router = express.Router()//setting routers
 
-
-router.get("/categories", (req,res) => {
-    res.send("Categories Router")
-})
-
 router.get("/admin/categories/new", (req, res) => {
-    res.send("Admin Categories")
+    res.render("admin/categories/new")
 })
 
 //exporting router 

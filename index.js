@@ -8,6 +8,12 @@ const connection = require("./database/database")
 const categoriesController = require("./categories/CategoriesController")
 const articlesController = require("./articles/ArticlesController")
 
+//importing Models
+const Article = require("./articles/Article")
+const Category = require("./categories/Category")
+
+
+
 //set view engine ejs
 app.set('view engine','ejs')
 
@@ -32,7 +38,7 @@ app.use("/",categoriesController)
 app.use("/",articlesController)
 
 //principal router
-app.get("/", (req,res) => {
+app.get("/", (req, res) => {
     //rendering view ejs
     res.render("index")
 })
