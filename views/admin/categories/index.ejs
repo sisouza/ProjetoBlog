@@ -22,9 +22,9 @@
                     <th><%= category.title%></th>
                     <th><%= category.slug %></th>
                     <th>
-                        <button class="btn btn-primary">Editar</button>
+                        <a href="/admin/categories/edit/<%= category.id %>" class="btn btn-primary">Editar</a>
 
-                        <form method="POST" action="/categories/delete" style="display:inline">
+                        <form method="POST" action="/categories/delete" style="display:inline" onsubmit="confirmExclusion(event,this)">
                             <input type="hidden" name="id" value="<%= category.id %>">
                             <button class="btn btn-danger">Excluir</button>
                         </form>
@@ -36,3 +36,13 @@
 </div>
 
 <%- include('../../partials/footer') %>
+<script>
+    function confirmExclusion(event,form){
+        event.preventDefault();
+        let decision = confirm("Confirmar Exclusão?")
+        if(decision){
+            //if "okay" form is send
+            form.submit();
+        }
+    }
+</script>

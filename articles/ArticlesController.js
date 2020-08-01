@@ -7,7 +7,7 @@ router.get("/articles", (req,res) => {
 })
 
 router.get("/admin/articles/new", (req,res) => {
-    res.send("Articles admin router")
+    res.render("/admin/articles/new")
 })
 
 module.exports = router

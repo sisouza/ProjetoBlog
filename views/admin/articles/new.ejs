@@ -1,0 +1,20 @@
+<%- include('../../partials/header') %> 
+<%- include('../../partials/navbar') %>
+
+<div class="container">
+    <hr>
+   <div class="card">
+       <div class="card-header">
+            <h2>Novo Artigo</h2>
+       </div>
+       <div class="card-body">
+        <form method="POST" action="/articles/save">
+            <input type="text" name="title"class="form-control" placeholder="Titulo do Artigo"><br>
+            <textarea name="body" class="form-control" placeholder="Digite o artigo"></textarea><br>
+            <button class="btn btn-secondary">Cadastrar</button>
+        </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../../partials/footer') %>
