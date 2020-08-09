@@ -39,8 +39,34 @@ app.use("/",articlesController)
 
 //principal router
 app.get("/", (req, res) => {
-    //rendering view ejs
-    res.render("index")
+    Article.findAll({
+        order:[
+            ['id','DESC']
+        ]
+    }).then(articles =>{
+                     //var that will be a list with our articles
+    res.render("index",{articles: articles})
+    })
+})
+
+//displaying each article page in index
+
+app.get("/:slug",(req,res) => {
+    let slug = req.params.slug
+    Article.findOne({
+        where: {
+            slug: slug
+        }
+    }).then(article => {
+        if(article != undefined){
+                           //passing var article to this view
+            res.render("article",{article: article})
+        }else{
+            res.redirect("/")
+        }
+    }).catch( err => {
+        res.redirect("/")
+    })
 })
 
 

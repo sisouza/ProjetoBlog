@@ -6,9 +6,10 @@ const Article = require("../articles/Article")
 const { default: slugify } = require("slugify");
 
 router.get("/admin/articles", (req,res) => {
-    Article.findAll().then(articles =>{
+    Article.findAll({
         //including Category Model for join
         include: [{model: Category}]
+    }).then(articles =>{
         res.render("admin/articles/index",{articles: articles})
     })
 })
@@ -28,7 +29,7 @@ router.post("/articles/save",(req,res) =>{
         title: title,
         slug: slugify(title),
         body: body,
-        categoryId
+        categoryId: category
     }).then(() => {
         res.redirect("/admin/articles")
     })

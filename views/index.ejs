@@ -1,1 +1,33 @@
-<h1>Oi</h1>
+<%- include('./partials/header') %> 
+<%- include('./partials/navbarhome') %>
+
+<body>
+    <div class="container">
+        <hr>
+        <div class="jumbotron">
+            <h1 class="display-4"></h1>
+            <p class="lead">Este é um projeto de blog com node</p>
+            <hr class="my-4">
+            <p>Saber mais</p>
+            <a href="#" class="btn btn-secondary btn-lg" role="button">Clique aqui</a>
+        </div>
+    <hr>
+<!-- looking from every item article from var articles that is a list
+from our index.js {articles: articles} -->
+
+<% articles.forEach(article => { %>   
+        <div class="card">
+            <div class="card-header">
+                <h2><%- article.title %></h2>
+            </div>
+            <div class="card-body">
+                <a href="/<%= article.slug %>" class="btn btn-primary">Ler</a>
+            </div>
+        </div>
+        <br>
+<%  }) %>      
+    </div>
+</body>
+
+
+<%- include('./partials/footer') %>
