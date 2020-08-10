@@ -105,12 +105,15 @@ router.get("/articles/page/:num",(req,res) =>{
         offset = 0;
     }else{
 //ex: page 2 then offset = 2 * 4 = 8 will start from 8 article in page 2
-        offset = parseInt(page) * 4;
+        offset = (parseInt(page) - 1)* 4;
     }
 
     Article.findAndCountAll({
         limit: 4,
-        offset: offset
+        offset: offset,
+        order:[
+            ['id','DESC']
+        ]
     }).then(articles => { 
 
         //verify if exists another page to be shown
@@ -122,11 +125,14 @@ router.get("/articles/page/:num",(req,res) =>{
         }
         
         let result = {
+            page: parseInt(page),
             next: next,
             articles: articles
         }
 
-        res.json(result)
+        Category.findAll().then(categories => {
+            res.render("admin/articles/page",{result:result, categories:categories})
+        })
     })
 })
 
