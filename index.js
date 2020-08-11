@@ -2,16 +2,16 @@ const express = require("express")
 const app = express()
 const bodyParser = require("body-parser")
 const connection = require("./database/database")
-
+const session = require("express-session")
 
 //importing my categories and articles router
 const categoriesController = require("./categories/CategoriesController")
 const articlesController = require("./articles/ArticlesController")
-
+const usersController = require("./users/usersController")
 //importing Models
 const Article = require("./articles/Article")
 const Category = require("./categories/Category")
-
+const Users = require("./articles/Users")
 
 
 //set view engine ejs
@@ -32,10 +32,16 @@ connection
         console.log(error)
     })
 
+//set sessions
+app.use(session({
+                            //cookie time limit
+    secret: "dontreadit", cookie: {maxAge: 30000}
+}))
 
 //using my routers
 app.use("/",categoriesController)
 app.use("/",articlesController)
+app.use("/",usersController)
 
 //principal router
 app.get("/", (req, res) => {
