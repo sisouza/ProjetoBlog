@@ -7,11 +7,11 @@ const session = require("express-session")
 //importing my categories and articles router
 const categoriesController = require("./categories/CategoriesController")
 const articlesController = require("./articles/ArticlesController")
-const usersController = require("./users/usersController")
+const usersController = require("./user/usersController")
 //importing Models
 const Article = require("./articles/Article")
 const Category = require("./categories/Category")
-const Users = require("./articles/Users")
+const User = require("./user/User")
 
 
 //set view engine ejs

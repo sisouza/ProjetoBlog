@@ -27,7 +27,7 @@ router.post("/users/create", (req,res)=>{
         
             User.create({
                 email: email,
-                password: password
+                password:hash
             }).then(() => {
                 res.redirect("/")
             }).catch((err) =>{
